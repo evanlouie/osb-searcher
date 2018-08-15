@@ -59,8 +59,11 @@
                                "serviceinstances"]]
                 [(fn [r] (some (partial = r) supported))
                  (str "Must be one of the supported CRD's:" supported)])]
+   ["-h" "--host HOST" "API host"
+    :default "127.0.0.1"
+    :validate [string? "Must be a string"]]
    ["-p" "--port PORT" "Port number"
-    :default 80
+    :default 8001
     :parse-fn #(Integer/parseInt %)
     :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
    ;; A non-idempotent option (:default is applied first)
